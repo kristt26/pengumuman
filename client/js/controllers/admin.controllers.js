@@ -46,8 +46,13 @@ function adminPegawaiController($scope, PegawaiService, message, PegawaiService,
 		message.dialog().then((x) => {}, (err) => {});
 	};
 }
-function adminKelulusanController($scope, KelulusanService, message, helperServices) {
+function adminKelulusanController($scope, KelulusanService, message, helperServices, SiswaService) {
 	$scope.helper = helperServices;
+
+	SiswaService.get().then((siswas) => {
+		$scope.Siswas = siswas;
+	});
+
 	KelulusanService.get().then((result) => {
 		$scope.source = result;
 	});

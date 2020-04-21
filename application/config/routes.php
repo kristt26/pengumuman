@@ -65,3 +65,18 @@ $route['api/siswa']['post'] = 'Siswa/Simpan';
 $route['api/siswa']['put'] = 'Siswa/Simpan';
 $route['api/siswa/:num']['delete'] = 'Siswa/Hapus';
 
+$route['api/pegawai']['get'] = 'Pegawai/Ambil';
+$route['api/pegawai']['post'] = 'Pegawai/Simpan';
+$route['api/pegawai']['put'] = 'Pegawai/Simpan';
+$route['api/pegawai/:num']['delete'] = 'SiPegawaiswa/Hapus';
+
+// Tahun Ajaran
+$route['api/tahunajaran']['get'] = 'TahunAjaran/Ambil';
+$route['api/tahunajaran']['post'] = 'TahunAjaran/Simpan';
+$route['api/tahunajaran']['put'] = 'TahunAjaran/Simpan';
+$route['api/tahunajaran/:num']['delete'] = 'TahunAjaran/Hapus';
+
+// transaksi
+$route['api/kelulusan']['get'] = 'Kelulusan/Ambil';
+
+

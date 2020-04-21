@@ -2,9 +2,8 @@ angular.module('account.controller', []).controller('LoginController', LoginCont
 
 function LoginController($scope, $state, AuthService) {
 	$scope.login = function(user) {
-		$state.go('home');
-		// AuthService.login(user).then((x) => {
-		// 	$state.go(x.role + '-home');
-		// });
+		AuthService.login(user).then((x) => {
+			$state.go(x.role + '-home');
+		});
 	};
 }

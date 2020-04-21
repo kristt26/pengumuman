@@ -16,6 +16,7 @@ function adminSiswaController($scope, message, SiswaService, helperServices) {
 
 	$scope.edit = (model) => {
 		$scope.model = angular.copy(model);
+		$scope.model.tanggallahir = new Date(model.tanggallahir);
 		$scope.title = 'Edit Siswa';
 	};
 	$scope.save = (model) => {
@@ -81,6 +82,7 @@ function adminTahunAjaranController($scope, message, TahunAjaranService, helperS
 
 	$scope.edit = (model) => {
 		$scope.model = angular.copy(model);
+		$scope.model.tanggallahir = new Date(model.tanggallahir);
 		$scope.title = 'Edit Pegawai';
 	};
 	$scope.save = (model) => {

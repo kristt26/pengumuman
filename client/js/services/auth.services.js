@@ -1,7 +1,7 @@
 angular.module('auth.service', []).factory('AuthService', AuthService);
 
 function AuthService($http, $q, StorageService, $state, helperServices, message) {
-	var controller = '/user';
+	var controller = '/api/users';
 	var service = {};
 
 	return {
@@ -80,13 +80,13 @@ function AuthService($http, $q, StorageService, $state, helperServices, message)
 		var def = $q.defer();
 		$http({
 			method: 'post',
-			url: helperServices.url + controller + '/login',
+			url: helperServices.url + controller,
 			headers: getHeader(),
 			data: user
 		}).then(
 			(res) => {
-				StorageService.addObject('user', res.data);
-				def.resolve(res.data);
+				StorageService.addObject('user', res.data.data);
+				def.resolve(res.data.data);
 			},
 			(err) => {
 				message.error(err);
@@ -142,7 +142,7 @@ function AuthService($http, $q, StorageService, $state, helperServices, message)
 				var token = getToken();
 				return {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + token
+					Authorization: token
 				};
 			}
 			throw new Error('Not Found Token');
@@ -167,7 +167,7 @@ function AuthService($http, $q, StorageService, $state, helperServices, message)
 
 	function getToken() {
 		var result = StorageService.getObject('user');
-		return result.token;
+		return result.Token;
 	}
 
 	function userIsLogin() {

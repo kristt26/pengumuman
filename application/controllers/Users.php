@@ -68,7 +68,7 @@ class Users extends \Restserver\Libraries\REST_Controller
 
     public function login_post()
     {
-        header("Access-Control-Allow-Origin: *");
+        // header("Access-Control-Allow-Origin: *");
         
         // $_POST = $this->security->xss_clean($_POST);
         $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
@@ -86,10 +86,10 @@ class Users extends \Restserver\Libraries\REST_Controller
             if (!empty($Output && $Output != false)) {
                 $this->load->library('Authorization_Token');
 
-                $token_data['id'] = $Output->Id;
-                $token_data['Username'] = $Output->Username;
-                $token_data['Email'] = $Output->Email;
-                $token_data['NamaUser'] = $Output->NamaUser;
+                $token_data['id'] = $Output->iduser;
+                $token_data['Username'] = $Output->username;
+                $token_data['Nama'] = $Output->nama;
+                $token_data['Role'] = $Output->rolename;
                 $token_data['time'] = time();
 
 
@@ -98,11 +98,11 @@ class Users extends \Restserver\Libraries\REST_Controller
                 // exit;
 
                 $return_data = [
-                    'IdUser' => $Output->Id,
-                    'Username' => $Output->Username,
-                    'Email' => $Output->Email,
-                    'NamaUser' => $Output->NamaUser,
-                    'RoleUser' => $Output->role,
+                    'iduser' => $Output->iduser,
+                    'username' => $Output->username,
+                    'nama' => $Output->nama,
+                    'role' => $Output->rolename,
+                    'status' => $Output->status,
                     'Token' => $UserToken
                 ];
 
@@ -121,15 +121,4 @@ class Users extends \Restserver\Libraries\REST_Controller
             }
         }
     }
-
-    // /**
-    //  *  Fetch All User Data
-    //  * @method : GET
-    //  */
-    // public function fetch_all_users_get()
-    // {
-    //     header("Access-Control-Allow-Origin: *");
-    //     $data = $this->User_model->fetch_all_users();
-    //     $this->response($data);
-    // }
 }

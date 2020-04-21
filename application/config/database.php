@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'db_silab',
+	'hostname' => 'smaypkdiaspora.sch.id',
+	'username' => 'u9045941_root',
+	'password' => '26031988@Aj',
+	'database' => 'u9045941_pengumuman',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -1,6 +1,6 @@
 <?php
 
-class Pegawai_model extends CI_Model
+class Kelulusan_model extends CI_Model
 {
     public function select($idkelulusan)
     {

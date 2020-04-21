@@ -35,6 +35,8 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             }else{
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }
+        }else{
+            $this->response(null, REST_Controller::HTTP_UNAUTHORIZED);
         }
     }
     public function ubah_put()

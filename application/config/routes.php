@@ -78,5 +78,6 @@ $route['api/tahunajaran/:num']['delete'] = 'TahunAjaran/Hapus';
 
 // transaksi
 $route['api/kelulusan']['get'] = 'Kelulusan/Ambil';
+$route['api/kelulusan']['post'] = 'Kelulusan/simpan';
 
 

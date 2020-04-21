@@ -40,7 +40,7 @@ class My_Lib
     /*
     to take mime type as a parameter and return the equivalent extension
     */
-    function mime2ext($mime){
+    public function mime2ext($mime){
         $all_mimes = '{"png":["image\/png","image\/x-png"],"bmp":["image\/bmp","image\/x-bmp",
         "image\/x-bitmap","image\/x-xbitmap","image\/x-win-bitmap","image\/x-windows-bmp",
         "image\/ms-bmp","image\/x-ms-bmp","application\/bmp","application\/x-bmp",

@@ -32,8 +32,8 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
         if ($is_valid_token['status'] === true) {
             $this->load->library('my_lib');
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-            $encoded_string = !empty($POST['Berkas']) ? $POST['base64_file'] : 'V2ViZWFzeXN0ZXAgOik=';
-            upload_file($encoded_string);
+            $encoded_string = !empty($POST['Berkas']) ? $POST['Berkas'] : 'V2ViZWFzeXN0ZXAgOik=';
+            $this->my_lib->upload_file($encoded_string);
         }
     }
     public function ubah_put()

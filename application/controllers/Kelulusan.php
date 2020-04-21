@@ -15,7 +15,7 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
     public function Ambil_get()
     {
         $output = $this->Kelulusan_model->select();
-        if($output){
+        if ($output) {
             $message = [
                 'status' => true,
                 'data' => $output,
@@ -23,23 +23,16 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
             ];
             $this->response($message, REST_Controller::HTTP_OK);
         }
-        
+
     }
     public function simpan_post()
     {
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-            $Output = $this->Kelulusan_model->insert($POST);
-            if ($Output) {
-                $message = [
-                    'data' => $Output
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
-            }else{
-                $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
-            }
+            $this->load->library('my_lib');
+            $encoded_string = !empty($_POST['base64_file']) ? $_POST['base64_file'] : 'V2ViZWFzeXN0ZXAgOik=';
+            upload_file($encoded_string);
         }
     }
     public function ubah_put()
@@ -54,7 +47,7 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
                     'status' => true,
                 ];
                 $this->response($message, REST_Controller::HTTP_OK);
-            }else{
+            } else {
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }
         }
@@ -70,7 +63,7 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
                     'status' => true,
                 ];
                 $this->response($message, REST_Controller::HTTP_OK);
-            }else{
+            } else {
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }
         }

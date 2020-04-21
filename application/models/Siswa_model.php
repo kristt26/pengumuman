@@ -7,7 +7,14 @@ class Siswa_Model extends CI_Model
         if($idsiswa){
             $result = $this->db->query("
             SELECT
-            *
+                `siswa`.*,
+                `kelulusan`.`idkelulusan`,
+                `kelulusan`.`idtahunajaran`,
+                `kelulusan`.`nilaisekolah`,
+                `kelulusan`.`nilaiun`,
+                `kelulusan`.`nilaiakhir`,
+                `kelulusan`.`status`,
+                `kelulusan`.`Berkas`
             FROM
             `siswa`
             LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE idsiswa='$idsiswa'
@@ -16,7 +23,14 @@ class Siswa_Model extends CI_Model
         }else{
             $result = $this->db->query("
             SELECT
-            *
+                `siswa`.*,
+                `kelulusan`.`idkelulusan`,
+                `kelulusan`.`idtahunajaran`,
+                `kelulusan`.`nilaisekolah`,
+                `kelulusan`.`nilaiun`,
+                `kelulusan`.`nilaiakhir`,
+                `kelulusan`.`status`,
+                `kelulusan`.`Berkas`
             FROM
             `siswa`
             LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa`

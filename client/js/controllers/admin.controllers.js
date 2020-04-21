@@ -8,7 +8,8 @@ angular
 	.controller('adminHomeController', adminHomeController);
 
 function adminController($scope, $state, AuthService) {}
-function adminSiswaController($scope, $state, AuthService, PegawaiService, message, SiswaService) {
+function adminSiswaController($scope, message, SiswaService, helperServices) {
+	$scope.helper = helperServices;
 	SiswaService.get().then((result) => {
 		$scope.source = result;
 	});
@@ -26,7 +27,8 @@ function adminSiswaController($scope, $state, AuthService, PegawaiService, messa
 		message.dialog().then((x) => {}, (err) => {});
 	};
 }
-function adminPegawaiController($scope, $state, AuthService, PegawaiService, message, PegawaiService) {
+function adminPegawaiController($scope, PegawaiService, message, PegawaiService, helperServices) {
+	$scope.helper = helperServices;
 	PegawaiService.get().then((result) => {
 		$scope.source = result;
 	});
@@ -44,7 +46,43 @@ function adminPegawaiController($scope, $state, AuthService, PegawaiService, mes
 		message.dialog().then((x) => {}, (err) => {});
 	};
 }
-function adminKelulusanController($scope, $state, AuthService) {}
-function adminTahunAjaranController($scope, $state, AuthService) {}
+function adminKelulusanController($scope, KelulusanService, message, helperServices) {
+	$scope.helper = helperServices;
+	KelulusanService.get().then((result) => {
+		$scope.source = result;
+	});
+
+	$scope.edit = (model) => {
+		$scope.model = angular.copy(model);
+		$scope.title = 'Edit Kelulusan';
+	};
+	$scope.save = (model) => {
+		if (model.idpegawai) {
+		}
+	};
+
+	$scope.delete = (item) => {
+		message.dialog().then((x) => {}, (err) => {});
+	};
+}
+function adminTahunAjaranController($scope, message, TahunAjaranService, helperServices) {
+	$scope.helper = helperServices;
+	TahunAjaranService.get().then((result) => {
+		$scope.source = result;
+	});
+
+	$scope.edit = (model) => {
+		$scope.model = angular.copy(model);
+		$scope.title = 'Edit Pegawai';
+	};
+	$scope.save = (model) => {
+		if (model.idpegawai) {
+		}
+	};
+
+	$scope.delete = (item) => {
+		message.dialog().then((x) => {}, (err) => {});
+	};
+}
 
 function adminHomeController($scope, $state, AuthService) {}

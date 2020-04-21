@@ -23,5 +23,9 @@ function helperServices($location) {
 		return map;
 	};
 
+	service.genders = [ 'Pria', 'Wanita' ];
+	service.jurusan = [ 'IPA', 'IPS', 'BAHASA' ];
+	service.statusLulus = [ 'Lulus', 'Tidak Lulus' ];
+
 	return service;
 }

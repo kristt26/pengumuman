@@ -36,10 +36,8 @@
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin </th>
-                                <th>Jabatan</th>
-                                <th>Alamat</th>
                                 <th>Kontak</th>
-                                <th>Pendidik</th>
+                                <th>Alamat</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -49,8 +47,6 @@
                                 <td>{{item.nip}}</td>
                                 <td>{{item.nama}}</td>
                                 <td>{{item.jeniskelamin}}</td>
-                                <td>{{item.jabatan}} </td>
-                                <td>{{item.pendidikan}}</td>
                                 <td>{{item.kontak}}</td>
                                 <td>{{item.alamat}}</td>
                                 <td>
@@ -99,43 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Jenis Kelamin</label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-warning active">
-                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Pria"
-                                    autocomplete="off" checked> Pria
-                            </label>
-
-                            <label class="btn btn-warning">
-                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Wanita"
-                                    autocomplete="off"> Wanita
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label">Tempat Lahir</label>
-                        <input ng-model="model.nama" type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label">Tanggal Lahir</label>
-                        <input ng-model="model.nama" type="date" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Jurusan</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option>IPA</option>
-                            <option>IPS</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Kelas</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option>I</option>
-                            <option>II</option>
-                            <option>III</option>
+                        <select class="form-control" ng-model="model.jeniskelamin" ng-options="item in helper.genders">
                         </select>
                     </div>
 

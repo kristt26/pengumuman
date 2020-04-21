@@ -101,34 +101,14 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Jenis Kelamin</label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-warning active">
-                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Pria"
-                                    autocomplete="off" checked> Pria
-                            </label>
-
-                            <label class="btn btn-warning">
-                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Wanita"
-                                    autocomplete="off"> Wanita
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Pendidikan</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option>SMA</option>
-                            <option>S1</option>
-                            <option>S2</option>
+                        <select class="form-control" ng-model="model.jeniskelamin"
+                            ng-options="item as item for item in helper.genders">
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Jabatan</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option>Guru</option>
-                            <option>Admin</option>
-                            <option>Kepala</option>
+                        <label class="col-form-label">Jurusan</label>
+                        <select class="form-control" ng-model="model.jurusan"
+                            ng-options="item as item for item  in helper.jurusan">
                         </select>
                     </div>
 

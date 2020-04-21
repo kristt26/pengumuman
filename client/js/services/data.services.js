@@ -268,7 +268,14 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 	var service = {};
 
 	var url = helperServices.url + '/api/tahunajaran';
-	var service = { Items: [] };
+	var service = {
+		instance: true,
+		Items: [
+			{ idtahunajaran: 2, tahunajaran: 2020, semester: 1, status: true },
+			{ idtahunajaran: 3, tahunajaran: 2020, semester: 2, status: false },
+			{ idtahunajaran: 4, tahunajaran: 2021, semester: 1, status: true }
+		]
+	};
 
 	service.get = function() {
 		var def = $q.defer();
@@ -388,7 +395,21 @@ function KelulusanService($http, $q, message, AuthService, helperServices) {
 	var service = {};
 
 	var url = helperServices.url + '/api/kelulusan';
-	var service = { Items: [] };
+	var service = {
+		instance: true,
+		Items: [
+			{
+				idsiswa: 1,
+				nis: 123123,
+				nama: 'Yoseph Kungkung',
+				jeniskelamin: 'Pria',
+				tanggallahir: new Date(),
+				tempatlahir: 'Palopo'
+			},
+			{ idsiswa: 2, nis: 123123, nama: 'Ajenk Kungkung', jeniskelamin: 'Pria' },
+			{ idsiswa: 3, nis: 123123, nama: 'Elisabeth Hamid', jeniskelamin: 'Wanita' }
+		]
+	};
 
 	service.get = function() {
 		var def = $q.defer();

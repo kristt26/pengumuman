@@ -56,16 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['API'] = 'Rest_server';
 
-// User API Routes
-$route['api/user/add'] = 'Users/add_user';
-$route['api/users/all'] = 'Users/fetch_all_users';
-$route['api/users/register'] = 'api/Users/register';
-$route['api/users/login'] = 'api/Users/login';
-$route['api/jadwal/jadwalmahasiswa'] = 'api/Jadwal/jadwalMahasiswa';
-$route['api/jadwal/jadwalall'] = 'api/Jadwal/jadwalall';
-$route['api/krsm/pengajuanKRS'] = 'api/Krsm/pengajuanKRS';
-$route['api/krsm/getkrsmtem'] = 'api/Krsm/ambilTemkrsm';
-$route['api/krsm/putkrsmtem'] = 'api/Krsm/approvedKrsm';
-$route['api/krsm/deleteitem'] = 'api/Krsm/HapusItem';
-$route['api/krsm/insertitem'] = 'api/Krsm/InsertItem';
-$route['api/krhm/GetKemajuanStudi'] = 'api/Khsm/GetKhsm';
+// User
+$route['api/users']['post'] = 'Users/login';
+
+// Siswa
+$route['api/siswa']['get'] = 'Siswa/GetSiswa';
+$route['api/siswa']['post'] = 'Siswa/Simpan';
+$route['api/siswa']['put'] = 'Siswa/Simpan';
+$route['api/siswa/:num']['delete'] = 'Siswa/Hapus';
+

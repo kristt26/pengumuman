@@ -14,7 +14,7 @@ class TahunAjaran extends \Restserver\Libraries\REST_Controller
 
     public function Ambil_get()
     {
-        $output = $this->Tahun_model->select();
+        $output = $this->Tahun_model->select(null);
         if($output){
             $message = [
                 'status' => true,

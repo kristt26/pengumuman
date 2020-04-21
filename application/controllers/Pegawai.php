@@ -14,7 +14,7 @@ class Pegawai extends \Restserver\Libraries\REST_Controller
 
     public function Ambil_get()
     {
-        $output = $this->Pegawai_model->select();
+        $output = $this->Pegawai_model->select(null);
         if($output){
             $message = [
                 'status' => true,

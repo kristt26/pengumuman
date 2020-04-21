@@ -1,26 +1,15 @@
 <?php
 
-class Siswa_Model extends CI_Model
+class Pegawai_model extends CI_Model
 {
-    public function select($idsiswa)
+    public function select($idpegawai)
     {
-        if ($idsiswa) {
-            $result = $result = $this->db->query("
-                SELECT
-                *
-                FROM
-                `siswa`
-                LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE idsiswa='$idsiswa'
-                ");
+        if($idpegawai){
+            $this->db->where('idpegawai', $idpegawai);
+            $result = $this->db->get('pegawai');
             return $result->result_array();
-        } else {
-            $result = $this->db->query("
-            SELECT
-            *
-            FROM
-            `siswa`
-            LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa`
-            ");
+        }else{
+            $result = $this->db->get('pegawai');
             return $result->result_array();
         }
     }
@@ -35,17 +24,15 @@ class Siswa_Model extends CI_Model
             "nis" => $data['nis'],
             "nama" => $data['nama'],
             "jeniskelamin" => $data['jeniskelamin'],
-            "kontak" => $data['kontak'],
+            "jabatan" => $data['jabatan'],
             "alamat" => $data['alamat'],
-            "jurusan" => $data['jurusan'],
-            "kelas" => $data['kelas'],
-            "tempatlahir" => $data['tempatlahir'],
-            "tanggallahir" => $data['tanggallahir'],
+            "kontak" => $data['kontak'],
+            "pendidikan" => $data['pendidikan'],
             "iduser" => $iduser,
         ];
-        $this->db->query("INSERT INTO userinrole values('','$iduser', '2')");
-        $this->db->insert('siswa', $item);
-        $item['idsiswa'] = $this->db->insert_id();
+        $this->db->query("INSERT INTO userinrole values('','$iduser', '1')");
+        $this->db->insert('pegawai', $item);
+        $item['idpegawai'] = $this->db->insert_id();
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();
             return false;
@@ -57,20 +44,18 @@ class Siswa_Model extends CI_Model
     public function update($data)
     {
         $item = [
-            "nis" => $data['nis'],
+            "nip" => $data['nip'],
             "nama" => $data['nama'],
             "jeniskelamin" => $data['jeniskelamin'],
-            "kontak" => $data['kontak'],
+            "jabatan" => $data['jabatan'],
             "alamat" => $data['alamat'],
-            "jurusan" => $data['jurusan'],
-            "kelas" => $data['kelas'],
-            "tempatlahir" => $data['tempatlahir'],
-            "tanggallahir" => $data['tanggallahir'],
+            "kontak" => $data['kontak'],
+            "pendidikan" => $data['pendidikan'],
             "iduser" => $iduser,
         ];
         $this->db->trans_begin();
-        $this->db->where('idsiswa', $data['idsiswa']);
-        $this->db->update('siswa', $item);
+        $this->db->where('idpegawai', $data['idpegawai']);
+        $this->db->update('pegawai', $item);
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();
             return false;
@@ -86,8 +71,8 @@ class Siswa_Model extends CI_Model
         $siswa = $a[0];
         $this->db->where('iduser', $siswa['iduser']);
         $this->db->delete('userinrole');
-        $this->db->where('idsiswa', $id);
-        $this->db->delete('siswa');
+        $this->db->where('idpegawai', $id);
+        $this->db->delete('pegawai');
         $this->db->where('iduser', $siswa['iduser']);
         $this->db->delete('user');
         if ($this->db->trans_status() === false) {
@@ -97,8 +82,8 @@ class Siswa_Model extends CI_Model
             $this->db->trans_commit();
             return true;
         }
-        $this->db->where('idsiswa', $id);
-        $result = $this->db->delete('siswa');
+        $this->db->where('idpegawai', $id);
+        $result = $this->db->delete('pegawai');
         return $result;
     }
 }

@@ -1,0 +1,152 @@
+<div class="dashboard-main-wrapper">
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" ui-sref="adminsuper-home">SMP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+                    <li class="nav-item nav-user">
+                        <a class="nav-link nav-user-img" ui-sref="adminsuper-inbox" id="navbarDropdownMenuLink2"
+                            aria-haspopup="true" aria-expanded="false"><i
+                                class="fas fa-envelope-square fa-2x text-primary">
+                                <span class="indicator"></span>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown nav-user">
+                        <userlogin></userlogin>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="nav-left-sidebar sidebar-light">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-item">
+                            <a ui-sref="admin-home" class="nav-link" href="#" aria-expanded="false" data-target="#"
+                                aria-controls="">
+                                <i class="fa fa-fw fa-home"></i>Home
+                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="admin-pegawai"><i class="fa fa-fw fa-rocket"></i>Pegawai</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="admin-siswa"><i class="fa fa-fw fa-rocket"></i>Siswa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="admin-ta"><i class="fa fa-fw fa-rocket"></i>Tahun
+                                Ajaran</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="admin-kelulusan"><i
+                                    class="fa fa-fw fa-rocket"></i>Kelulusan</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="$javascript();" data-toggle="collapse" aria-expanded="false"
+                                data-target="#submenu-5" aria-controls="submenu-5"><i
+                                    class="fa fa-fw fa-rocket"></i>Transaksi</a>
+                            <div id="submenu-5" class="collapse submenu">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" ui-sref="adminsuper-dataorder">Lihat Order</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" ui-sref="adminsuper-konfirpembayaran">Konfirmasi
+                                            Pembayaran</a>
+                                    </li>
+                                    <!--li class="nav-item">
+                                        <a class="nav-link" ui-sref="adminsuper-konfirpengiriman">Konfirmasi
+                                            Pengiriman</a>
+                                    </!--li>
+                                    <li-- class="nav-item">
+                                        <a class="nav-link" ui-sref="adminsuper-datatransaksi" href="">Data
+                                            Transaksi</a>
+                                    </li-->
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <ui-view></ui-view>
+            </div>
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a
+                                href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script>
+        jQuery(
+            '<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>'
+        )
+            .insertAfter('.quantity input');
+        jQuery('.quantity').each(function () {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
+
+            btnUp.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+            btnDown.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+        });
+    </script>
+</div>

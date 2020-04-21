@@ -4,16 +4,16 @@ class Siswa_Model extends CI_Model
 {
     public function select($idsiswa)
     {
-        if ($idsiswa) {
-            $result = $result = $this->db->query("
-                SELECT
-                *
-                FROM
-                `siswa`
-                LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE idsiswa='$idsiswa'
-                ");
+        if($idsiswa){
+            $result = $this->db->query("
+            SELECT
+            *
+            FROM
+            `siswa`
+            LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE idsiswa='$idsiswa'
+            ");
             return $result->result_array();
-        } else {
+        }else{
             $result = $this->db->query("
             SELECT
             *

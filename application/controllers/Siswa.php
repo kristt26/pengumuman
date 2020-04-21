@@ -9,12 +9,12 @@ class Siswa extends \Restserver\Libraries\REST_Controller
     public function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model('Siswa_model');
+        $this->load->model('Siswa_model', 'SiswaModel');
     }
 
     public function GetSiswa_get()
     {
-        $output = $this->Siswa_model->select();
+        $output = $this->SiswaModel->select(null);
         if($output){
             $message = [
                 'status' => true,
@@ -31,7 +31,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-            $Output = $this->Siswa_model->insert($POST);
+            $Output = $this->SiswaModel->insert($POST);
             if ($Output) {
                 $message = [
                     'data' => $Output
@@ -48,7 +48,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-            $Output = $this->Siswa_model->update($POST);
+            $Output = $this->SiswaModel->update($POST);
             if ($Output) {
                 $message = [
                     'status' => true,
@@ -64,7 +64,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            $Output = $this->Siswa_model->delete($this->uri->segment(3));
+            $Output = $this->SiswaModel->delete($this->uri->segment(3));
             if ($Output) {
                 $message = [
                     'status' => true,

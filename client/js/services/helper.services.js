@@ -1,7 +1,4 @@
-angular
-	.module('helper.service', [])
-	.factory('helperServices', helperServices)
-	.factory('kodefikasiService', kodefikasiServices);
+angular.module('helper.service', []).factory('helperServices', helperServices);
 
 function helperServices($location) {
 	var service = {};

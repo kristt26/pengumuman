@@ -8,12 +8,40 @@ angular
 	.controller('adminHomeController', adminHomeController);
 
 function adminController($scope, $state, AuthService) {}
-function adminSiswaController($scope, $state, AuthService) {}
-function adminPegawaiController($scope, $state, AuthService, PegawaiService) {
-	$scope.edit = (model) => {};
+function adminSiswaController($scope, $state, AuthService, PegawaiService, message, SiswaService) {
+	SiswaService.get().then((result) => {
+		$scope.source = result;
+	});
+
+	$scope.edit = (model) => {
+		$scope.model = angular.copy(model);
+		$scope.title = 'Edit Siswa';
+	};
 	$scope.save = (model) => {
 		if (model.idpegawai) {
 		}
+	};
+
+	$scope.delete = (item) => {
+		message.dialog().then((x) => {}, (err) => {});
+	};
+}
+function adminPegawaiController($scope, $state, AuthService, PegawaiService, message, PegawaiService) {
+	PegawaiService.get().then((result) => {
+		$scope.source = result;
+	});
+
+	$scope.edit = (model) => {
+		$scope.model = angular.copy(model);
+		$scope.title = 'Edit Pegawai';
+	};
+	$scope.save = (model) => {
+		if (model.idpegawai) {
+		}
+	};
+
+	$scope.delete = (item) => {
+		message.dialog().then((x) => {}, (err) => {});
 	};
 }
 function adminKelulusanController($scope, $state, AuthService) {}

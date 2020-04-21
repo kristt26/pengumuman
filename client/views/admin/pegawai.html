@@ -44,24 +44,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in [1,2,3,4]">
-                                <td>{{item.nip}}#</td>
+                            <tr ng-repeat="item in source">
+                                <td>{{$index+1}}</td>
                                 <td>{{item.nip}}</td>
-                                <td>{{item.nip}}</td>
-                                <td>{{item.nip}} </td>
-                                <td>{{item.nip}}</td>
-                                <td>{{item.nip}}</td>
-                                <td>{{item.nip}}</td>
-                                <td>{{item.nip}}</td>
+                                <td>{{item.nama}}</td>
+                                <td>{{item.jeniskelamin}}</td>
+                                <td>{{item.jabatan}} </td>
+                                <td>{{item.pendidikan}}</td>
+                                <td>{{item.kontak}}</td>
+                                <td>{{item.alamat}}</td>
                                 <td>
                                     <ul class="nav justify-content-end">
                                         <li>
-                                            <a class="btn btn-outline-warning" href=""
-                                                ng-click="model=item; title='Edit Pegawai'"><i
+                                            <a class="btn btn-outline-warning" href="" data-toggle="modal"
+                                                data-target="#exampleModal" ng-click="edit(item)"><i
                                                     class="fa fa-edit fa-1x"></i></a>
                                         </li>
                                         <li>
-                                            <a class="btn btn-outline-secondary" href=""><i
+                                            <a class="btn btn-outline-secondary" ng-click="delete(item)"><i
                                                     class="fa fa-trash fa-1x"></i></a>
                                         </li>
                                     </ul>
@@ -91,7 +91,7 @@
                 <form>
                     <div class="form-group">
                         <label class="col-form-label">NIP</label>
-                        <input ng-model="model.nama" type="text" class="form-control">
+                        <input ng-model="model.nip" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nama</label>
@@ -99,23 +99,53 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Jenis Kelamin</label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-warning active">
+                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Pria"
+                                    autocomplete="off" checked> Pria
+                            </label>
+
+                            <label class="btn btn-warning">
+                                <input ng-model="model.jeniskelamin" type="radio" name="options" id="Wanita"
+                                    autocomplete="off"> Wanita
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Tempat Lahir</label>
                         <input ng-model="model.nama" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Tanggal Lahir</label>
+                        <input ng-model="model.nama" type="date" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Pendidikan</label>
-                        <input ng-model="model.nama" type="text" class="form-control">
+                        <label class="col-form-label">Jurusan</label>
+                        <select class="form-control">
+                            <option></option>
+                            <option>IPA</option>
+                            <option>IPS</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Jabatan</label>
-                        <input ng-model="model.nama" type="text" class="form-control">
+                        <label class="col-form-label">Kelas</label>
+                        <select class="form-control">
+                            <option></option>
+                            <option>I</option>
+                            <option>II</option>
+                            <option>III</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label class="col-form-label">Telepon</label>
-                        <input ng-model="model.nama" type="text" class="form-control">
+                        <input ng-model="model.kontak" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Alamat</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea ng-model="alamat" class="form-control" id="message-text"></textarea>
                     </div>
                 </form>
             </div>

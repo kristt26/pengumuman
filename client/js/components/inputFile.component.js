@@ -77,5 +77,5 @@ angular.module('app.fileInput.conponent', []).component('fileinput', {
 			inp.click();
 		};
 	},
-	templateUrl: 'apps/js/components/templates/fileInput.html'
+	templateUrl: 'client/js/components/templates/fileInput.html'
 });

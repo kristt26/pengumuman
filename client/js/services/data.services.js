@@ -1,10 +1,20 @@
-angular.module('data.service', []).factory('PegawaiService', PegawaiService);
+angular
+	.module('data.service', [])
+	.factory('PegawaiService', PegawaiService)
+	.factory('SiswaService', SiswaService)
+	.factory('KelulusanService', KelulusanService)
+	.factory('TahunAjaranService', TahunAjaranService);
 
 function PegawaiService($http, $q, message, AuthService, helperServices) {
-	var service = {};
-
 	var url = helperServices.url + '/api/pegawai';
-	var service = { Items: [] };
+	var service = {
+		instance: true,
+		Items: [
+			{ idpegawai: 1, nip: 123123, nama: 'Yoseph Kungkung', jeniskelamin: 'Pria' },
+			{ idpegawai: 2, nip: 123123, nama: 'Ajenk Kungkung', jeniskelamin: 'Pria' },
+			{ idpegawai: 3, nip: 123123, nama: 'Aldrich Kungkung', jeniskelamin: 'Pria' }
+		]
+	};
 
 	service.get = function() {
 		var def = $q.defer();
@@ -124,7 +134,21 @@ function SiswaService($http, $q, message, AuthService, helperServices) {
 	var service = {};
 
 	var url = helperServices.url + '/api/siswa';
-	var service = { Items: [] };
+	var service = {
+		instance: true,
+		Items: [
+			{
+				idsiswa: 1,
+				nis: 123123,
+				nama: 'Yoseph Kungkung',
+				jeniskelamin: 'Pria',
+				tanggallahir: new Date(),
+				tempatlahir: 'Palopo'
+			},
+			{ idsiswa: 2, nis: 123123, nama: 'Ajenk Kungkung', jeniskelamin: 'Pria' },
+			{ idsiswa: 3, nis: 123123, nama: 'Elisabeth Hamid', jeniskelamin: 'Wanita' }
+		]
+	};
 
 	service.get = function() {
 		var def = $q.defer();

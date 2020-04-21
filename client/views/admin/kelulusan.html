@@ -1,0 +1,162 @@
+<!-- ============================================================== -->
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            <h2 class="pageheader-title"><i class="fa fa-fw fa-home"></i> Menu Utama </h2>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a ui-sref="admin-home" class="breadcrumb-link">WPKS</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Menu Utama</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- end pageheader  -->
+
+    <!-- Sales -->
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h3 class="text-muted">Pelanggan Baru</h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">#</th>
+                                <th class="border-0">Nama</th>
+                                <th class="border-0">Email</th>
+                                <th class="border-0">Telepon</th>
+                                <th class="border-0">Daftar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in pembeli| limitTo:4">
+                                <td>
+                                    <div class="m-r-10"><img ng-src="images/avatar/{{item.photo}}" alt="user"
+                                            class="rounded" width="45"></div>
+                                </td>
+                                <td>{{item.nama_pembeli}}</td>
+                                <td>{{item.email_pembeli}}</td>
+                                <td>{{item.no_tlp}} </td>
+                                <td>{{item.tgl_daftar|date :"dd-MM-yyyy hh:ss"}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"><a ui-sref="adminsuper-datapembeli"
+                                        class="btn btn-outline-light float-right">View Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end sales -->
+    <!-- Data Oreder Terbaru -->
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h3 class="text-muted">Data Order Terbaru</h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">#</th>
+                                <th class="border-0">Kode Order</th>
+                                <th class="border-0">Pembeli</th>
+                                <th class="border-0">Total</th>
+                                <th class="border-0">Status</th>
+                                <th class="border-0">Tgl Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="order in orders| limitTo:5">
+                                <td>1</td>
+                                <td>
+                                    <span
+                                        class="badge badge-success">{{kodefikasi.order(order.idorder,order.tgl_order)}}</span>
+                                </td>
+                                <td>{{order.pembeli.nama_pembeli}} </td>
+                                <td>{{order.total}}</td>
+                                <td>{{order.status}}</td>
+                                <td>{{order.tgl_order|date :"dd-MM-yyyy hh:ss"}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"><a ui-sref="adminsuper-dataorder"
+                                        class="btn btn-outline-light float-right">View Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data Oreder Terbaru -->
+    <!-- Daftar Konfirmasi Terbaru -->
+    <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+                <h3 class="text-muted">Daftar Konfirmasi Terbaru</h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th>#</th>
+                                <th>Kode Bayar</th>
+                                <th>No Order</th>
+                                <th>Nama Pembeli </th>
+                                <th>Total Bayar</th>
+                                <th>Diantar</th>
+                                <th>Bukti Bayar</th>
+                                <th>Status Bayar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in konfirm | limitTo:5">
+                                <td class="font-16"><span>{{$index+1}}</span>
+                                </td>
+                                <td class="font-16"><span
+                                        class="badge badge-success">{{kodefikasi.pembayaran(item.pembayaran.idpembayaran,item.pembayaran.tgl_pembayaran)}}</span>
+                                </td>
+                                <td class="font-16"><span
+                                        class="badge badge-success">{{kodefikasi.order(item.idorder,item.tgl_order)}}</span>
+                                </td>
+                                <td class="font-16"><span>{{item.pembeli.nama_pembeli}}</span>
+                                </td>
+
+                                <td class="font-16"><span>Rp. {{item.total|number}}</span>
+                                </td>
+
+                                <td class="font-16">
+                                    {{item.diantar}}</td>
+                                <td class="font-16">
+                                    {{item.pembayaran ? 'Ada':'Tidak Ada'}}</td>
+                                <td class="font-16"><span class="badge"
+                                        ng-class="item.pembayaran.status_pembayaran=='Lunas'?'badge-success':'badge-warning'">{{item.pembayaran.status_pembayaran}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"><a ui-sref="adminsuper-konfirpembayaran"
+                                        class="btn btn-outline-light float-right">View Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -92,8 +92,8 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label class="col-form-label">NIP</label>
-                        <input ng-model="model.nip" type="text" class="form-control">
+                        <label class="col-form-label">NIS</label>
+                        <input ng-model="model.nis" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nama</label>
@@ -103,6 +103,12 @@
                         <label class="col-form-label">Jenis Kelamin</label>
                         <select class="form-control" ng-model="model.jeniskelamin"
                             ng-options="item as item for item in helper.genders">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Kelas</label>
+                        <select class="form-control" ng-model="model.kelas"
+                            ng-options="item as item for item  in helper.kelas">
                         </select>
                     </div>
                     <div class="form-group">
@@ -118,13 +124,13 @@
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Alamat</label>
-                        <textarea ng-model="alamat" class="form-control" id="message-text"></textarea>
+                        <textarea ng-model="model.alamat" class="form-control" id="message-text"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" ng-click="save(model)" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>

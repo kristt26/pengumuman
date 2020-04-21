@@ -19,7 +19,10 @@ function adminSiswaController($scope, message, SiswaService, helperServices) {
 		$scope.title = 'Edit Siswa';
 	};
 	$scope.save = (model) => {
-		if (model.idpegawai) {
+		if (model.idsiswa) {
+			SiswaService.put(model).then((x) => {});
+		} else {
+			SiswaService.post(model).then((x) => {});
 		}
 	};
 

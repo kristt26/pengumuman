@@ -26,6 +26,7 @@ function helperServices($location) {
 	service.genders = [ 'Pria', 'Wanita' ];
 	service.jurusan = [ 'IPA', 'IPS', 'BAHASA' ];
 	service.statusLulus = [ 'Lulus', 'Tidak Lulus' ];
+	service.kelas = [ 'A', 'B', 'C', 'D', 'E' ];
 
 	return service;
 }

@@ -64,3 +64,4 @@ $route['api/siswa']['get'] = 'Siswa/GetSiswa';
 $route['api/siswa']['post'] = 'Siswa/Simpan';
 $route['api/siswa']['put'] = 'Siswa/Simpan';
 $route['api/siswa/:num']['delete'] = 'Siswa/Hapus';
+

@@ -100,6 +100,14 @@
                         <input ng-model="model.nama" type="text" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label class="col-form-label">Tempat Lahir</label>
+                        <input ng-model="model.tempatlahir" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tanggal Lahir</label>
+                        <input ng-model="model.tanggallahir" type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label class="col-form-label">Jenis Kelamin</label>
                         <select class="form-control" ng-model="model.jeniskelamin"
                             ng-options="item as item for item in helper.genders">

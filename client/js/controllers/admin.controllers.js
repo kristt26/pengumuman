@@ -125,40 +125,36 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 	});
 
 	$scope.edit = (model) => {
-		$scope.model = angular.copy(model);
+		$scope.model = { siswa: angular.copy(model) };
 		$scope.title = 'Edit Kelulusan';
 	};
 	$scope.save = (model) => {
-		if (!model.idtahunajaran) {
+		if (!model.siswa.idtahunajaran) {
 			model.siswa.idtahunajaran = $scope.selectedTa.idtahunajaran;
 		}
-
 		$scope.helper.IsBusy = true;
-		if (model.idpegawai) {
-			KelulusanService.put(model.siswa).then(
-				(x) => {
-					$scope.helper.IsBusy = false;
+		KelulusanService.post(model.siswa).then(
+			(result) => {
+				$scope.helper.IsBusy = false;
+				var data = $scope.source.find((x) => x.idsiswa == model.siswa.idsiswa);
+				if (data) {
+					data.idkelulusan = result.idkelulusan;
+					data.idtahunajaran = result.idtahunajaran;
+					data.idsiswa = result.idsiswa;
+					data.nilaisekolah = result.nilaisekolah;
+					data.nilaiun = result.nilaiun;
+					data.nilaiakhir = result.nilaiakhir;
+					data.status = result.status;
+					data.Berkas = result.Berkas;
+				}
 
-					message.info('Data Berhasil Disimpan');
-				},
-				(err) => {
-					$scope.helper.IsBusy = false;
-					message.error('Data Gagal Disimpan');
-				}
-			);
-		} else {
-			KelulusanService.post(model.siswa).then(
-				(result) => {
-					$scope.helper.IsBusy = false;
-					$scope.Lulus.push(result);
-					message.info('Data Berhasil Disimpan');
-				},
-				(err) => {
-					$scope.helper.IsBusy = false;
-					message.error('Data Gagal Disimpan');
-				}
-			);
-		}
+				message.info('Data Berhasil Disimpan');
+			},
+			(err) => {
+				$scope.helper.IsBusy = false;
+				message.error('Data Gagal Disimpan');
+			}
+		);
 	};
 
 	$scope.delete = (item) => {

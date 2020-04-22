@@ -50,7 +50,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in source|filter:{idtahunajaran:ta.idtahunajaran}:true">
+                            <tr ng-repeat="item in source | filter:{idtahunajaran:ta.idtahunajaran}">
                                 <td>{{$index+1}}</td>
                                 <td>{{item.nama}}</td>
                                 <td>{{item.nis}}</td>
@@ -65,10 +65,6 @@
                                             <a class="btn btn-outline-warning" href="" data-toggle="modal"
                                                 data-target="#exampleModal" ng-click="edit(item)"><i
                                                     class="fa fa-edit fa-1x"></i></a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-outline-secondary" ng-click="delete(item)"><i
-                                                    class="fa fa-trash fa-1x"></i></a>
                                         </li>
                                     </ul>
 
@@ -94,25 +90,29 @@
             </div>
             <div class="modal-body">
                 <form ng-submit="save(model)">
-                    <div class="form-group">
+                    <div class="form-group" ng-show="!model.siswa.idkelulusan">
                         <label class="col-form-label">Nama Siswa</label>
                         <select class="form-control" ng-model="model.siswa"
                             ng-options="item as item.nama+' - '+item.nis for item in source|filter: {idkelulusan:null}"></select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Nilai Sekolah</label>
-                        <input ng-model="model.siswa.nilaisekolah" ng-disabled="!model.siswa" type="number" min="0"
-                            required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Nilai UN</label>
-                        <input ng-model="model.siswa.nilaiun" ng-disabled="!model.siswa" type="number" min="0" required
+                    <div class="form-group" ng-show="model.siswa.idkelulusan">
+                        <label class="col-form-label">Nama Siswa</label>
+                        <input value="{{model.siswa.nama}} - {{model.siswa.nis}}" disabled required
                             class="form-control">
                     </div>
                     <div class="form-group">
+                        <label class="col-form-label">Nilai Sekolah</label>
+                        <input ng-model="model.siswa.nilaisekolah" ng-disabled="!model.siswa" required
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Nilai UN</label>
+                        <input ng-model="model.siswa.nilaiun" ng-disabled="!model.siswa" required class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label class="col-form-label">Nilai Akhir</label>
-                        <input ng-model="model.siswa.nilaiakhir" ng-disabled="!model.siswa" type="number" min="0"
-                            required class="form-control">
+                        <input ng-model="model.siswa.nilaiakhir" ng-disabled="!model.siswa" required
+                            class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Berkas</label>

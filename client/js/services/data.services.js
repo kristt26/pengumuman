@@ -23,7 +23,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 			}).then(
 				(response) => {
 					service.instance = true;
-					service.Items = response.data.data;
+					service.Items = response.data;
 					def.resolve(service.Items);
 				},
 				(err) => {
@@ -48,7 +48,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 				headers: AuthService.getHeader()
 			}).then(
 				(response) => {
-					service.Items.push(response.data.data);
+					service.Items.push(response.data);
 					def.resolve(response.data);
 				},
 				(err) => {
@@ -70,7 +70,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 			data: param
 		}).then(
 			(response) => {
-				service.Items.push(response.data.data);
+				service.Items.push(response.data);
 				def.resolve(response.data);
 			},
 			(err) => {
@@ -91,6 +91,17 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 			data: param
 		}).then(
 			(response) => {
+				var data = service.Items.find((x) => x.idpegawai == param.idpegawai);
+				if (data) {
+					data.nip = param.nip;
+					data.nama = param.nama;
+					data.jeniskelamin = param.jeniskelamin;
+					data.jabatan = param.jabatan;
+					data.alamat = param.alamat;
+					data.kontak = param.kontak;
+					data.pendidikan = param.penidikan;
+				}
+
 				def.resolve(response.data);
 			},
 			(err) => {
@@ -213,6 +224,19 @@ function SiswaService($http, $q, message, AuthService, helperServices) {
 			data: param
 		}).then(
 			(response) => {
+				var data = service.Items.find((x) => x.idsiswa == param.idsiswa);
+				if (data) {
+					data.nis = param.nis;
+					data.nama = param.nama;
+					data.jeniskelamin = param.jeniskelamin;
+					data.jurusan = param.jurusan;
+					data.alamat = param.alamat;
+					data.kontak = param.kontak;
+					data.kelas = param.kelas;
+					data.tempatlahir = param.tempatlahir;
+					data.tanggallahir = param.tanggallahir;
+				}
+
 				def.resolve(response.data);
 			},
 			(err) => {
@@ -337,6 +361,12 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 			data: param
 		}).then(
 			(response) => {
+				var data = service.Items.find((x) => x.idsiswa == param.idtahunajaran);
+				if (data) {
+					data.tahunajaran = param.tahunajaran;
+					data.semester = param.semester;
+					data.status = param.status;
+				}
 				def.resolve(response.data);
 			},
 			(err) => {
@@ -452,12 +482,24 @@ function KelulusanService($http, $q, message, AuthService, helperServices) {
 	service.put = function(param) {
 		var def = $q.defer();
 		$http({
-			method: 'Put',
+			method: 'Post',
 			url: url,
 			headers: AuthService.getHeader(),
 			data: param
 		}).then(
 			(response) => {
+				var data = service.Items.find((x) => x.idsiswa == param.idsiswa);
+				if (data) {
+					data.nis = param.nis;
+					data.nama = param.nama;
+					data.jeniskelamin = param.jeniskelamin;
+					data.jurusan = param.jurusan;
+					data.alamat = param.alamat;
+					data.kontak = param.kontak;
+					data.kelas = param.kelas;
+					data.tempatlahir = param.tempatlahir;
+					data.tanggallahir = param.tanggallahir;
+				}
 				def.resolve(response.data);
 			},
 			(err) => {

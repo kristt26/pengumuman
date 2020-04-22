@@ -32,14 +32,13 @@ class Kelulusan_model extends CI_Model
     public function update($data)
     {
         $item = [
-            "nip" => $data['nip'],
-            "nama" => $data['nama'],
-            "jeniskelamin" => $data['jeniskelamin'],
-            "jabatan" => $data['jabatan'],
-            "alamat" => $data['alamat'],
-            "kontak" => $data['kontak'],
-            "pendidikan" => $data['pendidikan'],
-            "iduser" => $iduser,
+            'idtahunajaran'=>$data['idtahunajaran'],
+            'idsiswa'=> $data['idsiswa'],
+            'nilaisekolah'=> $data['nilaisekolah'],
+            'nilaiun'=> $data['nilaiun'],
+            'nilaiakhir'=> $data['nilaiakhir'],
+            'status'=> $data['status'],
+            'Berkas'=> $data['Berkas']
         ];
         $this->db->trans_begin();
         $this->db->where('idkelulusan', $data['idkelulusan']);

@@ -7,7 +7,8 @@ class Kelulusan_model extends CI_Model
         if($idkelulusan){
             $this->db->where('idkelulusan', $idkelulusan);
             $result = $this->db->get('kelulusan');
-            return $result->result_array();
+            $item = $result->result_array();
+            return $item[0];
         }else{
             $result = $this->db->get('kelulusan');
             return $result->result_array();

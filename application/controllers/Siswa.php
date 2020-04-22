@@ -44,7 +44,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
             $Output = $this->SiswaModel->update($POST);
             if ($Output) {
-                $this->response('', REST_Controller::HTTP_OK);
+                $this->response(true, REST_Controller::HTTP_OK);
             }else{
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }
@@ -57,10 +57,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
         if ($is_valid_token['status'] === true) {
             $Output = $this->SiswaModel->delete($this->uri->segment(3));
             if ($Output) {
-                $message = [
-                    'status' => true,
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
+                $this->response(true, REST_Controller::HTTP_OK);
             }else{
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }

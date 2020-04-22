@@ -17,7 +17,7 @@ class Siswa_Model extends CI_Model
                 `kelulusan`.`Berkas`
             FROM
             `siswa`
-            LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE idsiswa='$idsiswa'
+            LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE siswa.idsiswa='$idsiswa'
             ");
             return $result->result_array();
         }else{
@@ -59,13 +59,14 @@ class Siswa_Model extends CI_Model
         ];
         $this->db->query("INSERT INTO userinrole values('','$iduser', '2')");
         $this->db->insert('siswa', $item);
-        $item['idsiswa'] = $this->db->insert_id();
+        $idsiswa = $this->db->insert_id();
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();
             return false;
         } else {
             $this->db->trans_commit();
-            return $item;
+            $item = $this->select($idsiswa);
+            return $item[0];
         }
     }
     public function update($data)

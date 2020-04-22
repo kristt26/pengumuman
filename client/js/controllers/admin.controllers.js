@@ -7,7 +7,11 @@ angular
 	.controller('adminTahunAjaranController', adminTahunAjaranController)
 	.controller('adminHomeController', adminHomeController);
 
-function adminController($scope, $state, AuthService) {}
+function adminController($scope, $state, AuthService) {
+	if (!AuthService.userIsLogin()) {
+		$state.go('login');
+	}
+}
 function adminSiswaController($scope, message, SiswaService, helperServices) {
 	$scope.helper = helperServices;
 	SiswaService.get().then((result) => {
@@ -140,7 +144,7 @@ function adminTahunAjaranController($scope, message, TahunAjaranService, helperS
 	};
 	$scope.save = (model) => {
 		$scope.helper.IsBusy = true;
-		if (model.idpegawai) {
+		if (model.idtahunajaran) {
 			TahunAjaranService.put(model).then(
 				(x) => {
 					$scope.helper.IsBusy = false;

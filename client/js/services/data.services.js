@@ -254,12 +254,7 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 
 	var url = helperServices.url + '/api/tahunajaran';
 	var service = {
-		instance: true,
-		Items: [
-			{ idtahunajaran: 2, tahunajaran: 2020, semester: 1, status: true },
-			{ idtahunajaran: 3, tahunajaran: 2020, semester: 2, status: false },
-			{ idtahunajaran: 4, tahunajaran: 2021, semester: 1, status: true }
-		]
+		Items: []
 	};
 
 	service.get = function() {

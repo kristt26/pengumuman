@@ -115,15 +115,12 @@ function adminPegawaiController($scope, PegawaiService, message, PegawaiService,
 }
 function adminKelulusanController($scope, KelulusanService, message, helperServices, SiswaService, TahunAjaranService) {
 	$scope.helper = helperServices;
-
-	SiswaService.get().then((siswas) => {
-		$scope.source = siswas;
-		$scope.Lulus = siswas.filter((x) => x.idkelulusan);
-		$scope.BelumLulus = siswas.filter((x) => !x.idkelulusan);
-		TahunAjaranService.get().then((ta) => {
-			$scope.tahuns = ta;
-			$scope.selectedTa = ta.find((x) => x.status);
-			$scope.ta = angular.copy($scope.selectedTa);
+	TahunAjaranService.get().then((ta) => {
+		$scope.tahuns = ta;
+		$scope.selectedTa = ta.find((x) => x.status);
+		$scope.ta = angular.copy($scope.selectedTa);
+		SiswaService.get().then((siswas) => {
+			$scope.source = siswas;
 		});
 	});
 

@@ -117,11 +117,13 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 	$scope.helper = helperServices;
 
 	SiswaService.get().then((siswas) => {
+		$scope.source = siswas;
 		$scope.Lulus = siswas.filter((x) => x.idkelulusan);
 		$scope.BelumLulus = siswas.filter((x) => !x.idkelulusan);
 		TahunAjaranService.get().then((ta) => {
 			$scope.tahuns = ta;
 			$scope.selectedTa = ta.find((x) => x.status);
+			$scope.ta = angular.copy($scope.selectedTa);
 		});
 	});
 
@@ -139,6 +141,7 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 			KelulusanService.put(model.siswa).then(
 				(x) => {
 					$scope.helper.IsBusy = false;
+
 					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
@@ -150,6 +153,7 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 			KelulusanService.post(model.siswa).then(
 				(result) => {
 					$scope.helper.IsBusy = false;
+					$scope.Lulus.push(result);
 					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {

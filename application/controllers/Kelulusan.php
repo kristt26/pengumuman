@@ -47,7 +47,6 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
             }else{
                 $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
-            
         }else{
             $this->response($is_valid_token, REST_Controller::HTTP_UNAUTHORIZED);
         }
@@ -60,12 +59,9 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
             $Output = $this->Kelulusan_model->update($POST);
             if ($Output) {
-                $message = [
-                    'status' => true,
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
+                $this->response(true, REST_Controller::HTTP_OK);
             } else {
-                $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
         }
     }

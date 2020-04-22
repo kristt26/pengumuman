@@ -117,8 +117,8 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 	$scope.helper = helperServices;
 
 	SiswaService.get().then((siswas) => {
-		$scope.Lulus = siswas.filter((x) => x.idpengumuman);
-		$scope.BelumLulus = siswas.filter((x) => !x.idpengumuman);
+		$scope.Lulus = siswas.filter((x) => x.idkelulusan);
+		$scope.BelumLulus = siswas.filter((x) => !x.idkelulusan);
 		TahunAjaranService.get().then((ta) => {
 			$scope.tahuns = ta;
 			$scope.selectedTa = ta.find((x) => x.status);
@@ -176,10 +176,6 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 function adminTahunAjaranController($scope, message, TahunAjaranService, helperServices) {
 	$scope.helper = helperServices;
 	TahunAjaranService.get().then((result) => {
-		result.forEach((element) => {
-			element.status = 1;
-		});
-
 		$scope.source = result;
 	});
 

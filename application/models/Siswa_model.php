@@ -80,7 +80,7 @@ class Siswa_Model extends CI_Model
             "kelas" => $data['kelas'],
             "tempatlahir" => $data['tempatlahir'],
             "tanggallahir" => $data['tanggallahir'],
-            "iduser" => $iduser,
+            "iduser" => $data['iduser'],
         ];
         $this->db->trans_begin();
         $this->db->where('idsiswa', $data['idsiswa']);

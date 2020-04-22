@@ -51,7 +51,7 @@ class Pegawai_model extends CI_Model
             "alamat" => $data['alamat'],
             "kontak" => $data['kontak'],
             "pendidikan" => $data['pendidikan'],
-            "iduser" => $iduser,
+            "iduser" => $data['iduser'],
         ];
         $this->db->trans_begin();
         $this->db->where('idpegawai', $data['idpegawai']);

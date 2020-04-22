@@ -19,13 +19,14 @@
 
 .siswa .siswa-body h1 {
   margin: 30px;
+  text-transform: uppercase;
 }
 
 .siswa .siswa-download {
   margin-top: 40px;
 }
 
-.siswa .siswa-download button {
+.siswa .siswa-download a {
   width: 30%;
   padding: 20px;
 }

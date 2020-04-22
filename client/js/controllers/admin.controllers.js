@@ -115,49 +115,46 @@ function adminPegawaiController($scope, PegawaiService, message, PegawaiService,
 }
 function adminKelulusanController($scope, KelulusanService, message, helperServices, SiswaService, TahunAjaranService) {
 	$scope.helper = helperServices;
-
-	SiswaService.get().then((siswas) => {
-		$scope.Lulus = siswas.filter((x) => x.idkelulusan);
-		$scope.BelumLulus = siswas.filter((x) => !x.idkelulusan);
-		TahunAjaranService.get().then((ta) => {
-			$scope.tahuns = ta;
-			$scope.selectedTa = ta.find((x) => x.status);
+	TahunAjaranService.get().then((ta) => {
+		$scope.tahuns = ta;
+		$scope.selectedTa = ta.find((x) => x.status);
+		$scope.ta = angular.copy($scope.selectedTa);
+		SiswaService.get().then((siswas) => {
+			$scope.source = siswas;
 		});
 	});
 
 	$scope.edit = (model) => {
-		$scope.model = angular.copy(model);
+		$scope.model = { siswa: angular.copy(model) };
 		$scope.title = 'Edit Kelulusan';
 	};
 	$scope.save = (model) => {
-		if (!model.idtahunajaran) {
+		if (!model.siswa.idtahunajaran) {
 			model.siswa.idtahunajaran = $scope.selectedTa.idtahunajaran;
 		}
-
 		$scope.helper.IsBusy = true;
-		if (model.idpegawai) {
-			KelulusanService.put(model.siswa).then(
-				(x) => {
-					$scope.helper.IsBusy = false;
-					message.info('Data Berhasil Disimpan');
-				},
-				(err) => {
-					$scope.helper.IsBusy = false;
-					message.error('Data Gagal Disimpan');
+		KelulusanService.post(model.siswa).then(
+			(result) => {
+				$scope.helper.IsBusy = false;
+				var data = $scope.source.find((x) => x.idsiswa == model.siswa.idsiswa);
+				if (data) {
+					data.idkelulusan = result.idkelulusan;
+					data.idtahunajaran = result.idtahunajaran;
+					data.idsiswa = result.idsiswa;
+					data.nilaisekolah = result.nilaisekolah;
+					data.nilaiun = result.nilaiun;
+					data.nilaiakhir = result.nilaiakhir;
+					data.status = result.status;
+					data.Berkas = result.Berkas;
 				}
-			);
-		} else {
-			KelulusanService.post(model.siswa).then(
-				(result) => {
-					$scope.helper.IsBusy = false;
-					message.info('Data Berhasil Disimpan');
-				},
-				(err) => {
-					$scope.helper.IsBusy = false;
-					message.error('Data Gagal Disimpan');
-				}
-			);
-		}
+
+				message.info('Data Berhasil Disimpan');
+			},
+			(err) => {
+				$scope.helper.IsBusy = false;
+				message.error('Data Gagal Disimpan');
+			}
+		);
 	};
 
 	$scope.delete = (item) => {

@@ -7,10 +7,18 @@ class Tahun_model extends CI_Model
         if($idtahunajaran){
             $this->db->where('idtahunajaran', $idtahunajaran);
             $result = $this->db->get('tahunajaran');
-            return $result->result_array();
+            $item = $result->result_object();
+            foreach ($item as $key => $value) {
+                $value->status = boolval($value->status);
+            }
+            return $item;
         }else{
             $result = $this->db->get('tahunajaran');
-            return $result->result_array();
+            $item = $result->result_object();
+            foreach ($item as $key => $value) {
+                $value->status = boolval($value->status);
+            }
+            return $item;
         }
     }
     public function insert($data)

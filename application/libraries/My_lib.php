@@ -19,6 +19,7 @@ class My_Lib
         return $randomString;
     }
 
+
     function upload_file($encoded_string){
         $target_dir = './client/berkas/'; // add the specific path to save the file
         $decoded_file = base64_decode($encoded_string); // decode the file

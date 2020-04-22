@@ -81,7 +81,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form ng-submit="save(model)">
                     <div class="form-group">
                         <label class="col-form-label">Tahun</label>
                         <input ng-model="model.tahunajaran" min="2010" type="number" class="form-control">
@@ -98,13 +98,14 @@
                         <label class="col-form-label">Status</label>
                         <input ng-model="model.status" type="checkbox">
                     </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class=" fa fa-spinner fa-spin"
+                                ng-show="helper.IsBusy"></i>Simpan </button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+
         </div>
     </div>
 </div>

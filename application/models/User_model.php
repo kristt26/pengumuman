@@ -80,16 +80,32 @@ class User_Model extends CI_Model
         if ($q->num_rows()) {
             $x = $q->result_object();
             $a = $x[0];
-            $d = $q->row('rolename');
             if ($q->row('rolename') == 'siswa') {
-                $this->db->where('iduser', $q->row('iduser'));
-                $Biodata = $this->db->get('siswa');
+                $iduser = $q->row('iduser');
+                $Biodata = $this->db->query("
+                SELECT
+                    `siswa`.*,
+                    `kelulusan`.`idkelulusan`,
+                    `kelulusan`.`idtahunajaran`,
+                    `kelulusan`.`nilaisekolah`,
+                    `kelulusan`.`nilaiun`,
+                    `kelulusan`.`nilaiakhir`,
+                    `kelulusan`.`status`,
+                    `kelulusan`.`Berkas`
+                FROM
+                `siswa`
+                LEFT JOIN `kelulusan` ON `kelulusan`.`idsiswa` = `siswa`.`idsiswa` WHERE siswa.iduser='$iduser'
+                ");
                 $a->nama = $Biodata->row('nama');
+                $itemm = $Biodata->result_object();
+                $a->biodata = $itemm[0];
             } else{
                 $this->db->where('iduser', $q->row('iduser'));
                 $Biodata = $this->db->get("pegawai");
                 if ($Biodata->num_rows()) {
                     $a->nama = $Biodata->row('nama');
+                    $itemm = $Biodata->result_object();
+                    $a->biodata = $itemm[0];
                 }
             }
             return $a;

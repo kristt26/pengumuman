@@ -103,16 +103,16 @@ class Users extends \Restserver\Libraries\REST_Controller
                     'nama' => $Output->nama,
                     'role' => $Output->rolename,
                     'status' => $Output->status,
-                    'Token' => $UserToken
+                    'Token' => $UserToken,
+                    'biodata' => $Output->biodata
                 ];
-                $a =(object)$return_data;
 
                 // $message = [
                 //     'status' => true,
                 //     'data' => $return_data,
                 //     'message' => "Login Berhasil",
                 // ];
-                $this->response($a, REST_Controller::HTTP_OK);
+                $this->response((object)$return_data, REST_Controller::HTTP_OK);
             } else {
                 $message = [
                     'status' => false,

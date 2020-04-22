@@ -351,9 +351,8 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 		var def = $q.defer();
 		$http({
 			method: 'Delete',
-			url: url + '/' + param.idkategori,
-			headers: AuthService.getHeader(),
-			data: param
+			url: url + '/' + param,
+			headers: AuthService.getHeader()
 		}).then(
 			(response) => {
 				var index = service.Items.indexOf(param);
@@ -473,9 +472,8 @@ function KelulusanService($http, $q, message, AuthService, helperServices) {
 		var def = $q.defer();
 		$http({
 			method: 'Delete',
-			url: url + '/' + param.idkategori,
-			headers: AuthService.getHeader(),
-			data: param
+			url: url + '/' + param,
+			headers: AuthService.getHeader()
 		}).then(
 			(response) => {
 				var index = service.Items.indexOf(param);

@@ -33,7 +33,22 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
             $this->load->library('my_lib');
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
             $encoded_string = !empty($POST['Berkas']) ? $POST['Berkas'] : 'V2ViZWFzeXN0ZXAgOik=';
-            $this->my_lib->upload_file($encoded_string);
+            $item = $this->my_lib->upload_file($encoded_string);
+            $item['extension'] = $this->my_lib->mime2ext($item['type']);
+            $a = $item['extension'];
+            $file = uniqid() .'.'. $a;
+            $target_dir = './client/berkas/';
+            $file_dir = $target_dir . $file;
+            if(file_put_contents($file_dir, $decoded_file)){
+                $POST['Berkas'] = $file;
+                $Output = $this->Kelulusan_model->insert($POST);
+                $this->response($Output, REST_Controller::HTTP_OK);
+            }else{
+                $this->response('$Output', REST_Controller::HTTP_BAD_REQUEST);
+            }
+            
+        }else{
+            $this->response($is_valid_token, REST_Controller::HTTP_UNAUTHORIZED);
         }
     }
     public function ubah_put()

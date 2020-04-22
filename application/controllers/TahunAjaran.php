@@ -20,7 +20,6 @@ class TahunAjaran extends \Restserver\Libraries\REST_Controller
         }else{
             $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
         }
-        
     }
     public function simpan_post()
     {

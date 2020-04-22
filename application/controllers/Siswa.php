@@ -30,7 +30,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             if ($Output) {
                 $this->response($Output, REST_Controller::HTTP_OK);
             }else{
-                $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
         }else{
             $this->response(null, REST_Controller::HTTP_UNAUTHORIZED);
@@ -46,7 +46,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             if ($Output) {
                 $this->response(true, REST_Controller::HTTP_OK);
             }else{
-                $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
         }
     }
@@ -59,7 +59,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             if ($Output) {
                 $this->response(true, REST_Controller::HTTP_OK);
             }else{
-                $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
         }
     }

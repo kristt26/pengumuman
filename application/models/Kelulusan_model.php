@@ -17,8 +17,6 @@ class Kelulusan_model extends CI_Model
     {
         $item = [
             'idtahunajaran'=>$data['idtahunajaran'],
-            
-
         ];
         $this->db->insert('kelulusan', $data);
         $data['idkelulusan']= $this->db->insert_id();

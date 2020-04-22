@@ -16,12 +16,9 @@ class TahunAjaran extends \Restserver\Libraries\REST_Controller
     {
         $output = $this->Tahun_model->select(null);
         if($output){
-            $message = [
-                'status' => true,
-                'data' => $output,
-                'message' => "Success",
-            ];
-            $this->response($message, REST_Controller::HTTP_OK);
+            $this->response($output, REST_Controller::HTTP_OK);
+        }else{
+            $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
         }
         
     }
@@ -35,7 +32,7 @@ class TahunAjaran extends \Restserver\Libraries\REST_Controller
             if ($Output) {
                 $this->response($Output, REST_Controller::HTTP_OK);
             }else{
-                $this->response($Output, REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
         }
     }

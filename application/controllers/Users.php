@@ -105,13 +105,14 @@ class Users extends \Restserver\Libraries\REST_Controller
                     'status' => $Output->status,
                     'Token' => $UserToken
                 ];
+                $a =(object)$return_data;
 
                 // $message = [
                 //     'status' => true,
                 //     'data' => $return_data,
                 //     'message' => "Login Berhasil",
                 // ];
-                $this->response($return_data, REST_Controller::HTTP_OK);
+                $this->response($a, REST_Controller::HTTP_OK);
             } else {
                 $message = [
                     'status' => false,

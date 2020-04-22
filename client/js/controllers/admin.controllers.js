@@ -20,15 +20,35 @@ function adminSiswaController($scope, message, SiswaService, helperServices) {
 		$scope.title = 'Edit Siswa';
 	};
 	$scope.save = (model) => {
+		$scope.helper.IsBusy = true;
 		if (model.idsiswa) {
-			SiswaService.put(model).then((x) => {});
+			SiswaService.put(model).then(
+				(x) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
 		} else {
-			SiswaService.post(model).then((x) => {});
+			SiswaService.post(model).then(
+				(result) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
 		}
 	};
 
 	$scope.delete = (item) => {
-		message.dialog().then((x) => {}, (err) => {});
+		message.dialog().then(
+			(x) => {
+				SiswaService.delete(item.idsiswa).then((x) => {});
+			},
+			(err) => {}
+		);
 	};
 }
 function adminPegawaiController($scope, PegawaiService, message, PegawaiService, helperServices) {
@@ -42,7 +62,25 @@ function adminPegawaiController($scope, PegawaiService, message, PegawaiService,
 		$scope.title = 'Edit Pegawai';
 	};
 	$scope.save = (model) => {
+		$scope.helper.IsBusy = true;
 		if (model.idpegawai) {
+			PegawaiService.put(model).then(
+				(x) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
+		} else {
+			PegawaiService.post(model).then(
+				(result) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
 		}
 	};
 
@@ -54,11 +92,8 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 	$scope.helper = helperServices;
 
 	SiswaService.get().then((siswas) => {
-		$scope.Siswas = siswas;
-	});
-
-	KelulusanService.get().then((result) => {
-		$scope.source = result;
+		$scope.Lulus = siswas.filter((x) => x.idpengumuman);
+		$scope.BelumLulus = siswas.filter((x) => !x.idpengumuman);
 	});
 
 	$scope.edit = (model) => {
@@ -66,7 +101,25 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 		$scope.title = 'Edit Kelulusan';
 	};
 	$scope.save = (model) => {
+		$scope.helper.IsBusy = true;
 		if (model.idpegawai) {
+			KelulusanService.put(model).then(
+				(x) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
+		} else {
+			KelulusanService.post(model).then(
+				(result) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
 		}
 	};
 
@@ -86,7 +139,25 @@ function adminTahunAjaranController($scope, message, TahunAjaranService, helperS
 		$scope.title = 'Edit Pegawai';
 	};
 	$scope.save = (model) => {
+		$scope.helper.IsBusy = true;
 		if (model.idpegawai) {
+			TahunAjaranService.put(model).then(
+				(x) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
+		} else {
+			TahunAjaranService.post(model).then(
+				(result) => {
+					$scope.helper.IsBusy = false;
+				},
+				(err) => {
+					$scope.helper.IsBusy = false;
+				}
+			);
 		}
 	};
 

@@ -8,12 +8,7 @@ angular
 function PegawaiService($http, $q, message, AuthService, helperServices) {
 	var url = helperServices.url + '/api/pegawai';
 	var service = {
-		instance: true,
-		Items: [
-			{ idpegawai: 1, nip: 123123, nama: 'Yoseph Kungkung', jeniskelamin: 'Pria' },
-			{ idpegawai: 2, nip: 123123, nama: 'Ajenk Kungkung', jeniskelamin: 'Pria' },
-			{ idpegawai: 3, nip: 123123, nama: 'Aldrich Kungkung', jeniskelamin: 'Pria' }
-		]
+		Items: []
 	};
 
 	service.get = function() {
@@ -28,7 +23,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 			}).then(
 				(response) => {
 					service.instance = true;
-					service.Items = response.data;
+					service.Items = response.data.data;
 					def.resolve(service.Items);
 				},
 				(err) => {
@@ -53,7 +48,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 				headers: AuthService.getHeader()
 			}).then(
 				(response) => {
-					service.Items.push(response.data);
+					service.Items.push(response.data.data);
 					def.resolve(response.data);
 				},
 				(err) => {
@@ -75,7 +70,7 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 			data: param
 		}).then(
 			(response) => {
-				service.Items.push(response.data);
+				service.Items.push(response.data.data);
 				def.resolve(response.data);
 			},
 			(err) => {
@@ -106,18 +101,20 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 		return def.promise;
 	};
 
-	service.delete = function(param) {
+	service.delete = function(id) {
 		var def = $q.defer();
 		$http({
 			method: 'Delete',
-			url: url + '/' + param.idkategori,
-			headers: AuthService.getHeader(),
-			data: param
+			url: url + '/' + id,
+			headers: AuthService.getHeader()
 		}).then(
 			(response) => {
-				var index = service.Items.indexOf(param);
-				service.Items.splice(index, 1);
-				def.resolve(response.data);
+				var data = service.Items.find((x) => x.idpegawai == id);
+				if (data) {
+					var index = service.Items.indexOf(data);
+					service.Items.splice(index, 1);
+					def.resolve(true);
+				}
 			},
 			(err) => {
 				message.error(err.data);
@@ -226,18 +223,20 @@ function SiswaService($http, $q, message, AuthService, helperServices) {
 		return def.promise;
 	};
 
-	service.delete = function(param) {
+	service.delete = function(id) {
 		var def = $q.defer();
 		$http({
 			method: 'Delete',
-			url: url + '/' + param.idkategori,
-			headers: AuthService.getHeader(),
-			data: param
+			url: url + '/' + id,
+			headers: AuthService.getHeader()
 		}).then(
 			(response) => {
-				var index = service.Items.indexOf(param);
-				service.Items.splice(index, 1);
-				def.resolve(response.data);
+				var data = service.Items.find((x) => x.idsiswa == id);
+				if (data) {
+					var index = service.Items.indexOf(data);
+					service.Items.splice(index, 1);
+					def.resolve(true);
+				}
 			},
 			(err) => {
 				message.error(err.data);
@@ -382,19 +381,7 @@ function KelulusanService($http, $q, message, AuthService, helperServices) {
 
 	var url = helperServices.url + '/api/kelulusan';
 	var service = {
-		instance: true,
-		Items: [
-			{
-				idsiswa: 1,
-				nis: 123123,
-				nama: 'Yoseph Kungkung',
-				jeniskelamin: 'Pria',
-				tanggallahir: new Date(),
-				tempatlahir: 'Palopo'
-			},
-			{ idsiswa: 2, nis: 123123, nama: 'Ajenk Kungkung', jeniskelamin: 'Pria' },
-			{ idsiswa: 3, nis: 123123, nama: 'Elisabeth Hamid', jeniskelamin: 'Wanita' }
-		]
+		Items: []
 	};
 
 	service.get = function() {

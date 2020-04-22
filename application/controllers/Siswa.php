@@ -28,10 +28,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
             $Output = $this->SiswaModel->insert($POST);
             if ($Output) {
-                $message = [
-                    'data' => $Output
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
+                $this->response($Output, REST_Controller::HTTP_OK);
             }else{
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }
@@ -47,10 +44,7 @@ class Siswa extends \Restserver\Libraries\REST_Controller
             $POST = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
             $Output = $this->SiswaModel->update($POST);
             if ($Output) {
-                $message = [
-                    'status' => true,
-                ];
-                $this->response($message, REST_Controller::HTTP_OK);
+                $this->response('', REST_Controller::HTTP_OK);
             }else{
                 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
             }

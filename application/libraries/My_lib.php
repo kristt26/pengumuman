@@ -23,18 +23,24 @@ class My_Lib
         $target_dir = './client/berkas/'; // add the specific path to save the file
         $decoded_file = base64_decode($encoded_string); // decode the file
         $mime_type = finfo_buffer(finfo_open(), $decoded_file, FILEINFO_MIME_TYPE); // extract mime type
-        $extension = mime2ext($mime_type); // extract extension from mime type
-        $file = uniqid() .'.'. $extension; // rename file as a unique name
-        $file_dir = $target_dir . uniqid() .'.'. $extension;
-        try {
-            file_put_contents($file_dir, $decoded_file); // save
-            // database_saving($file);
-            header('Content-Type: application/json');
-            echo json_encode("File Uploaded Successfully");
-        } catch (Exception $e) {
-            header('Content-Type: application/json');
-            echo json_encode($e->getMessage());
-        }
+        // $extension = mime2ext($mime_type); // extract extension from mime type
+        // $file = uniqid() .'.'. $extension; // rename file as a unique name
+        // $file_dir = $target_dir . uniqid() .'.'. $extension;
+        $data = [
+            "file" => $decoded_file,
+            "type" => $mime_type
+        ];
+        return $data;
+
+        // try {
+        //     file_put_contents($file_dir, $decoded_file); // save
+        //     // database_saving($file);
+        //     header('Content-Type: application/json');
+        //     echo json_encode("File Uploaded Successfully");
+        // } catch (Exception $e) {
+        //     header('Content-Type: application/json');
+        //     echo json_encode($e->getMessage());
+        // }
     
     }
     /*

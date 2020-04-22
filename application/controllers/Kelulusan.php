@@ -39,12 +39,13 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
             $file = uniqid() .'.'. $a;
             $target_dir = './client/berkas/';
             $file_dir = $target_dir . $file;
-            if(file_put_contents($file_dir, $decoded_file)){
-                $POST['Berkas'] = $file;
-                $Output = $this->Kelulusan_model->insert($POST);
+            file_put_contents($file_dir, $item['file']);
+            $POST['Berkas'] = $file;
+            $Output = $this->Kelulusan_model->insert($POST);
+            if($Output){
                 $this->response($Output, REST_Controller::HTTP_OK);
             }else{
-                $this->response('$Output', REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
             }
             
         }else{

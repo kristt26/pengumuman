@@ -86,7 +86,7 @@ function AuthService($http, $q, StorageService, $state, helperServices, message)
 		}).then(
 			(res) => {
 				StorageService.addObject('user', res.data.data);
-				def.resolve(res.data.data);
+				def.resolve(res.data);
 			},
 			(err) => {
 				message.error(err);

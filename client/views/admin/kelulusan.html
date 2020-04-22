@@ -20,15 +20,13 @@
                 <div class="d-flex justify-content-between">
                     <div class="form-group" style="width: 100px;">
                         <label class="col-form-label">Tahun Ajaran</label>
-                        <select class="form-control">
-                            <option></option>
-                            <option>I</option>
-                            <option>II</option>
-                            <option>III</option>
+                        <select class="form-control" ng-model="ta"
+                            ng-options="item as item.tahunajaran for item in tahuns">
                         </select>
                     </div>
-                    <div> <a class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" href=""
-                            ng-click="model=null;title='Tambah Kelulusan'"><i class="fa fa-plus-square fa-2x"></i></a>
+                    <div> <a ng-show="selectedTa" class="btn btn-outline-success" data-toggle="modal"
+                            data-target="#exampleModal" href="" ng-click="model=null;title='Tambah Kelulusan'"><i
+                                class="fa fa-plus-square fa-2x"></i></a>
                     </div>
                 </div>
             </div>
@@ -115,7 +113,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Berkas</label>
-                        <fileinput ng-model="model.siswa.Berkas" class="form-control" idname="'berkas'"></fileinput>
+                        <fileinput model="model.siswa.Berkas" class="form-control" idname="'berkas'"></fileinput>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

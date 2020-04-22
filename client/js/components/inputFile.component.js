@@ -21,7 +21,8 @@ angular.module('app.fileInput.conponent', []).component('fileinput', {
 					reader.onload = function(xx) {
 						$scope.$apply((x) => {
 							$scope.$ctrl.fileName = f.name;
-							$scope.$ctrl.model = reader.result;
+							var data = reader.result.split(',');
+							$scope.$ctrl.model = data[1];
 						});
 					};
 					reader.onerror = function(error) {

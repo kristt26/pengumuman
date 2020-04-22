@@ -29,18 +29,22 @@ function adminSiswaController($scope, message, SiswaService, helperServices) {
 			SiswaService.put(model).then(
 				(x) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		} else {
 			SiswaService.post(model).then(
 				(result) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		}
@@ -49,9 +53,13 @@ function adminSiswaController($scope, message, SiswaService, helperServices) {
 	$scope.delete = (item) => {
 		message.dialog().then(
 			(x) => {
-				SiswaService.delete(item.idsiswa).then((x) => {});
+				SiswaService.delete(item.idsiswa).then((x) => {
+					message.info('Data Berhasil Dihapus');
+				});
 			},
-			(err) => {}
+			(err) => {
+				message.error('Data Gagal Dihapus');
+			}
 		);
 	};
 }
@@ -71,33 +79,50 @@ function adminPegawaiController($scope, PegawaiService, message, PegawaiService,
 			PegawaiService.put(model).then(
 				(x) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		} else {
 			PegawaiService.post(model).then(
 				(result) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		}
 	};
 
 	$scope.delete = (item) => {
-		message.dialog().then((x) => {}, (err) => {});
+		message.dialog().then(
+			(x) => {
+				PegawaiService.delete(item.idpegawai).then((x) => {
+					message.info('Data Berhasil Dihapus');
+				});
+			},
+			(err) => {
+				message.error('Data Gagal Dihapus');
+			}
+		);
 	};
 }
-function adminKelulusanController($scope, KelulusanService, message, helperServices, SiswaService) {
+function adminKelulusanController($scope, KelulusanService, message, helperServices, SiswaService, TahunAjaranService) {
 	$scope.helper = helperServices;
 
 	SiswaService.get().then((siswas) => {
 		$scope.Lulus = siswas.filter((x) => x.idpengumuman);
 		$scope.BelumLulus = siswas.filter((x) => !x.idpengumuman);
+		TahunAjaranService.get().then((ta) => {
+			$scope.tahuns = ta;
+			$scope.selectedTa = ta.find((x) => x.status);
+		});
 	});
 
 	$scope.edit = (model) => {
@@ -105,35 +130,56 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 		$scope.title = 'Edit Kelulusan';
 	};
 	$scope.save = (model) => {
+		if (!model.idtahunajaran) {
+			model.siswa.idtahunajaran = $scope.selectedTa.idtahunajaran;
+		}
+
 		$scope.helper.IsBusy = true;
 		if (model.idpegawai) {
-			KelulusanService.put(model).then(
+			KelulusanService.put(model.siswa).then(
 				(x) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		} else {
-			KelulusanService.post(model).then(
+			KelulusanService.post(model.siswa).then(
 				(result) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		}
 	};
 
 	$scope.delete = (item) => {
-		message.dialog().then((x) => {}, (err) => {});
+		message.dialog().then(
+			(x) => {
+				KelulusanService.delete(item.idkelulusan).then((x) => {
+					message.info('Data Berhasil Dihapus');
+				});
+			},
+			(err) => {
+				message.error('Data Gagal Dihapus');
+			}
+		);
 	};
 }
 function adminTahunAjaranController($scope, message, TahunAjaranService, helperServices) {
 	$scope.helper = helperServices;
 	TahunAjaranService.get().then((result) => {
+		result.forEach((element) => {
+			element.status = 1;
+		});
+
 		$scope.source = result;
 	});
 
@@ -148,25 +194,38 @@ function adminTahunAjaranController($scope, message, TahunAjaranService, helperS
 			TahunAjaranService.put(model).then(
 				(x) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		} else {
 			TahunAjaranService.post(model).then(
 				(result) => {
 					$scope.helper.IsBusy = false;
+					message.info('Data Berhasil Disimpan');
 				},
 				(err) => {
 					$scope.helper.IsBusy = false;
+					message.error('Data Gagal Disimpan');
 				}
 			);
 		}
 	};
 
 	$scope.delete = (item) => {
-		message.dialog().then((x) => {}, (err) => {});
+		message.dialog().then(
+			(x) => {
+				TahunAjaranService.delete(item.idtahunajaran).then((x) => {
+					message.info('Data Berhasil Dihapus');
+				});
+			},
+			(err) => {
+				message.error('Data Gagal Dihapus');
+			}
+		);
 	};
 }
 

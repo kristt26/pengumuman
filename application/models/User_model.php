@@ -80,7 +80,8 @@ class User_Model extends CI_Model
         if ($q->num_rows()) {
             $x = $q->result_object();
             $a = $x[0];
-            if ($q->row('rolename') == 'Siswa') {
+            $d = $q->row('rolename');
+            if ($q->row('rolename') == 'siswa') {
                 $this->db->where('iduser', $q->row('iduser'));
                 $Biodata = $this->db->get('siswa');
                 $a->nama = $Biodata->row('nama');

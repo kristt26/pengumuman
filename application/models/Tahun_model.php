@@ -23,15 +23,17 @@ class Tahun_model extends CI_Model
     }
     public function insert($data)
     {
-        $this->db->trans_begin();
-        $this->db->set('status', false);
-        $this->db->where('idtahunajaran', $data['idtahunajaran']);
-        $this->db->update('tahunajaran');
+        if($data['status']){
+            $this->db->trans_begin();
+            $this->db->set('status', 0);
+            $this->db->where('status', 1);
+            $this->db->update('tahunajaran');
+        }
 
         $item = [
             "tahunajaran" => $data['tahunajaran'],
             "semester" => $data['semester'],
-            "status" => true,
+            "status" => $data['status']? 1: 0,
         ];
         $this->db->insert('tahunajaran', $item);
         $item['idtahunajaran'] = $this->db->insert_id();
@@ -45,10 +47,11 @@ class Tahun_model extends CI_Model
     }
     public function update($data)
     {
+        
         $item = [
             "tahunajaran" => $data['tahunajaran'],
             "semester" => $data['semester'],
-            "status" => true,
+            "status" => $data['status']? 1: 0 ,
         ];
         $this->db->trans_begin();
         $this->db->where('idtahunajaran', $data['idtahunajaran']);

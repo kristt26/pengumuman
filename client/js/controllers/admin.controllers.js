@@ -176,10 +176,6 @@ function adminKelulusanController($scope, KelulusanService, message, helperServi
 function adminTahunAjaranController($scope, message, TahunAjaranService, helperServices) {
 	$scope.helper = helperServices;
 	TahunAjaranService.get().then((result) => {
-		result.forEach((element) => {
-			element.status = 1;
-		});
-
 		$scope.source = result;
 	});
 

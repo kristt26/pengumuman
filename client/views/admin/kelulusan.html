@@ -82,7 +82,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -96,11 +95,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form ng-submit="save(model)">
                     <div class="form-group">
                         <label class="col-form-label">Nama Siswa</label>
                         <select class="form-control" ng-model="model.siswa"
-                            ng-options="item as item.nama+' '+item.nis for item in Siswas track by model.siswa"></select>
+                            ng-options="item as item.nama+' '+item.nis for item in BelumLulus track by model.siswa"></select>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nilai Sekolah</label>
@@ -118,12 +117,13 @@
                         <label for="message-text" class="col-form-label">Berkas</label>
                         <fileinput ng-model="alamat" class="form-control" id="message-text"></fileinput>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+
         </div>
     </div>
 </div>

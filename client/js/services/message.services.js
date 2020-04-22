@@ -14,7 +14,7 @@ function MessageServices(swangular, $q, $state) {
 	function error(params) {
 		var message = params;
 		var title = 'Error';
-		if (params.status) {
+		if (params && params.status) {
 			switch (params.status) {
 				case 400:
 					message = params.data;
@@ -36,6 +36,7 @@ function MessageServices(swangular, $q, $state) {
 					break;
 			}
 		}
+		if (!message) message = 'Terjadi Kesalahan';
 
 		swangular.swal({
 			title: title,

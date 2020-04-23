@@ -10,9 +10,6 @@ class Siswa_Model extends CI_Model
                 `siswa`.*,
                 `kelulusan`.`idkelulusan`,
                 `kelulusan`.`idtahunajaran`,
-                `kelulusan`.`nilaisekolah`,
-                `kelulusan`.`nilaiun`,
-                `kelulusan`.`nilaiakhir`,
                 `kelulusan`.`status`,
                 `kelulusan`.`Berkas`
             FROM
@@ -26,9 +23,6 @@ class Siswa_Model extends CI_Model
                 `siswa`.*,
                 `kelulusan`.`idkelulusan`,
                 `kelulusan`.`idtahunajaran`,
-                `kelulusan`.`nilaisekolah`,
-                `kelulusan`.`nilaiun`,
-                `kelulusan`.`nilaiakhir`,
                 `kelulusan`.`status`,
                 `kelulusan`.`Berkas`
             FROM

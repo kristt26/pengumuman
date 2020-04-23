@@ -1,12 +1,12 @@
 .DS_Store
 client/node_modules/
 application/cache/*
-application/config/database.php
 !application/cache/index.html
 
 
 application/logs/*
 application/config/*
+!application/config/database.php
 !application/logs/index.html
 
 
@@ -35,3 +35,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 
 test/*
+application/config/database.php

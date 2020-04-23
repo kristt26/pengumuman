@@ -49,19 +49,14 @@
                                 <td>{{item.jeniskelamin}}</td>
                                 <td>{{item.kontak}}</td>
                                 <td>{{item.alamat}}</td>
-                                <td>
-                                    <ul class="nav justify-content-end">
-                                        <li>
-                                            <a class="btn btn-outline-warning" href="" data-toggle="modal"
-                                                data-target="#exampleModal" ng-click="edit(item)"><i
-                                                    class="fa fa-edit fa-1x"></i></a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-outline-secondary" ng-click="delete(item)"><i
-                                                    class="fa fa-trash fa-1x"></i></a>
-                                        </li>
-                                    </ul>
-
+                                <td nowrap>
+                                    <div class="tdaction justify-content-start">
+                                        <a class="btn btn-outline-warning" href="" data-toggle="modal"
+                                            data-target="#exampleModal" ng-click="edit(item)"><i
+                                                class="fa fa-edit fa-1x"></i></a>
+                                        <a class="btn btn-outline-secondary" ng-click="delete(item)"><i
+                                                class="fa fa-trash fa-1x"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

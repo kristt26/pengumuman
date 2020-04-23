@@ -16,12 +16,7 @@ class Kelulusan extends \Restserver\Libraries\REST_Controller
     {
         $output = $this->Kelulusan_model->select();
         if ($output) {
-            $message = [
-                'status' => true,
-                'data' => $output,
-                'message' => "Success",
-            ];
-            $this->response($message, REST_Controller::HTTP_OK);
+            $this->response($output, REST_Controller::HTTP_OK);
         }
 
     }

@@ -36,27 +36,20 @@
                         <thead class="bg-light">
                             <tr class="border-0">
                                 <th rowspan="2">#</th>
-                                <th rowspan="2">Nama Siswa</th>
+                                <th rowspan="2">Nomor Peserta</th>
                                 <th rowspan="2">NIS</th>
-                                <th colspan="3">Nilai </th>
+                                <th rowspan="2">Nama Siswa</th>
                                 <th rowspan="2">Status</th>
                                 <th rowspan="2">Berkas</th>
                                 <th rowspan="2">Aksi</th>
-                            </tr>
-                            <tr class="border-0">
-                                <th>Sekolah </th>
-                                <th>UN</th>
-                                <th>Akhir</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in source | filter:{idtahunajaran:ta.idtahunajaran}">
                                 <td>{{$index+1}}</td>
-                                <td>{{item.nama}}</td>
+                                <td>{{item.kontak}}</td>
                                 <td>{{item.nis}}</td>
-                                <td>{{item.nilaisekolah}}</td>
-                                <td>{{item.nilaiun}} </td>
-                                <td>{{item.nilaiakhir}} </td>
+                                <td>{{item.nama}}</td>
                                 <td>{{item.status}} </td>
                                 <td><a href="client/berkas/{{item.Berkas}}">Download</a></td>
                                 <td nowrap>
@@ -98,30 +91,17 @@
                             class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Nilai Sekolah</label>
-                        <input ng-model="model.siswa.nilaisekolah" ng-disabled="!model.siswa" required
-                            class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Nilai UN</label>
-                        <input ng-model="model.siswa.nilaiun" ng-disabled="!model.siswa" required class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">Nilai Akhir</label>
-                        <input ng-model="model.siswa.nilaiakhir" ng-disabled="!model.siswa" required
-                            class="form-control">
+                        <label for="message-text" class="col-form-label">Status Kelulusan</label>
+                        <select class="form-control" ng-model="model.siswa.status" required ng-disabled="!model.siswa"
+                            ng-options="item as item for item in helper.statusLulus">
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Berkas</label>
                         <fileinput model="model.siswa.file" ng-disabled="!model.siswa" class="form-control"
                             idname="'berkas'"></fileinput>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Berkas</label>
-                        <select class="form-control" ng-model="model.siswa.status" required ng-disabled="!model.siswa"
-                            ng-options="item as item for item in helper.statusLulus">
-                        </select>
-                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" ng-disabled="!model.siswa" class="btn btn-primary"><i

@@ -139,8 +139,6 @@ function PegawaiService($http, $q, message, AuthService, helperServices) {
 }
 
 function SiswaService($http, $q, message, AuthService, helperServices) {
-	var service = {};
-
 	var url = helperServices.url + '/api/siswa';
 	var service = { Items: [] };
 
@@ -274,8 +272,6 @@ function SiswaService($http, $q, message, AuthService, helperServices) {
 }
 
 function TahunAjaranService($http, $q, message, AuthService, helperServices) {
-	var service = {};
-
 	var url = helperServices.url + '/api/tahunajaran';
 	var service = {
 		Items: []
@@ -293,7 +289,9 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 			}).then(
 				(response) => {
 					service.instance = true;
-					service.Items = response.data;
+					if (!response.data) {
+						service.Items = [];
+					} else service.Items = response.data;
 					def.resolve(service.Items);
 				},
 				(err) => {
@@ -401,8 +399,6 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 }
 
 function KelulusanService($http, $q, message, AuthService, helperServices) {
-	var service = {};
-
 	var url = helperServices.url + '/api/kelulusan';
 	var service = {
 		Items: []

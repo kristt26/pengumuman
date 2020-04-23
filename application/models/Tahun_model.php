@@ -67,7 +67,7 @@ class Tahun_model extends CI_Model
     public function delete($id)
     {
         $this->db->where('idtahunajaran', $id);
-        $this->db->delete('tahunajaran');
+        $result = $this->db->delete('tahunajaran');
         return $result;
     }
 }

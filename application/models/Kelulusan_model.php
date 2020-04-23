@@ -19,9 +19,6 @@ class Kelulusan_model extends CI_Model
         $item = [
             'idtahunajaran'=>$data['idtahunajaran'],
             'idsiswa'=> $data['idsiswa'],
-            'nilaisekolah'=> $data['nilaisekolah'],
-            'nilaiun'=> $data['nilaiun'],
-            'nilaiakhir'=> $data['nilaiakhir'],
             'status'=> $data['status'],
             'Berkas'=> $data['Berkas']
         ];
@@ -34,9 +31,6 @@ class Kelulusan_model extends CI_Model
         $item = [
             'idtahunajaran'=>$data['idtahunajaran'],
             'idsiswa'=> $data['idsiswa'],
-            'nilaisekolah'=> $data['nilaisekolah'],
-            'nilaiun'=> $data['nilaiun'],
-            'nilaiakhir'=> $data['nilaiakhir'],
             'status'=> $data['status'],
             'Berkas'=> $data['Berkas']
         ];

@@ -17,8 +17,6 @@ class TahunAjaran extends \Restserver\Libraries\REST_Controller
         $output = $this->Tahun_model->select(null);
         if($output){
             $this->response($output, REST_Controller::HTTP_OK);
-        }else{
-            $this->response(false, REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     public function simpan_post()

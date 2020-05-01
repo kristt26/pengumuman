@@ -1,6 +1,7 @@
 .siswa {
   padding: 30px;
   text-align: center;
+  min-height: 100vh;
 }
 
 .siswa .siswa-logo img {
@@ -9,22 +10,41 @@
 }
 
 .siswa .siswa-header {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .siswa .siswa-body {
-  margin: 60px;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
 }
 
-.siswa .siswa-body h1 {
+.siswa .siswa-body #nama {
   margin: 30px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.siswa .siswa-body #nomor {
+  margin: 30px;
+  font-weight: bold;
+}
+
+.siswa .siswa-body h1,
+.siswa .siswa-body h5 {
   text-transform: uppercase;
 }
 
 .siswa .siswa-body .status {
-  padding: 10px;
+  width: 350px;
+  margin: auto;
+  padding: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
   color: white;
-  background-color: greenyellow;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 24px;
 }
 
 .siswa .siswa-download {
@@ -39,28 +59,35 @@
 @media screen and (max-width: 600px) {
   .siswa {
     min-height: 95vh;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
   }
   .siswa .siswa-logo img {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
   }
   .siswa .siswa-header {
-    margin-top: 30px;
-  }
-  .siswa .siswa-header h2 {
-    font-size: 18px;
-  }
-  .siswa .siswa-header h4 {
-    font-size: 14px;
+    display: none;
   }
   .siswa .siswa-body {
-    margin: 30px;
+    margin: 15px;
   }
-  .siswa .siswa-body h1 {
+  .siswa .siswa-body #nama {
+    margin: 15px;
+    font-size: 14px;
+  }
+  .siswa .siswa-body #nomor {
+    margin: 15px;
+    font-size: 14px;
+  }
+  .siswa .siswa-body h5 {
+    font-size: 12px;
+  }
+  .siswa .siswa-body .status {
+    width: 100%;
     font-size: 18px;
-    text-transform: uppercase;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   .siswa .siswa-download {
     margin-top: 5px;

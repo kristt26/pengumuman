@@ -1,7 +1,7 @@
 .siswa {
     padding: 30px;
     text-align: center;
-
+    min-height: 100vh;
     .siswa-logo {
         img {
             width: 150px;
@@ -10,20 +10,38 @@
     }
 
     .siswa-header {
-        margin-top: 60px;
+        margin-top: 20px;
     }
 
     .siswa-body {
-        margin: 60px;
-        h1 {
+        margin: auto;
+        margin-top: 30px;
+        text-align: center;
+
+        #nama {
             margin: 30px;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nomor {
+            margin: 30px;
+            font-weight: bold;
+        }
+        h1,
+        h5 {
             text-transform: uppercase;
         }
 
         .status {
-            padding: 10px;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            padding-left: 35px;
+            padding-right: 35px;
             color: white;
-            background-color: greenyellow;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 24px;
         }
     }
     .siswa-download {
@@ -38,32 +56,38 @@
 @media screen and (max-width: 600px) {
     .siswa {
         min-height: 95vh;
-        padding: 20px;
+        padding: 15px;
         text-align: center;
 
         .siswa-logo {
             img {
-                width: 100px;
-                height: 100px;
+                width: 75px;
+                height: 75px;
             }
         }
 
         .siswa-header {
-            margin-top: 30px;
-            h2 {
-                font-size: 18px;
-            }
-
-            h4 {
-                font-size: 14px;
-            }
+            display: none;
         }
 
         .siswa-body {
-            margin: 30px;
-            h1 {
+            margin: 15px;
+            #nama {
+                margin: 15px;
+                font-size: 14px;
+            }
+            #nomor {
+                margin: 15px;
+                font-size: 14px;
+            }
+            h5 {
+                font-size: 12px;
+            }
+            .status {
+                width: 100%;
                 font-size: 18px;
-                text-transform: uppercase;
+                padding-left: 5px;
+                padding-right: 5px;
             }
         }
         .siswa-download {

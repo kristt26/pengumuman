@@ -307,23 +307,13 @@ function TahunAjaranService($http, $q, message, AuthService, helperServices) {
 	service.getById = function(id) {
 		var def = $q.defer();
 		if (service.instance) {
-			var data = service.Items.find((x) => x.idkategori == id);
+			var data = service.Items.find((x) => x.idtahunajaran == id);
 			def.resolve(data);
 		} else {
-			$http({
-				method: 'Get',
-				url: url + '/' + id,
-				headers: AuthService.getHeader()
-			}).then(
-				(response) => {
-					service.Items.push(response.data);
-					def.resolve(response.data);
-				},
-				(err) => {
-					message.error(err.data);
-					def.reject(err);
-				}
-			);
+			service.get().then((result) => {
+				var data = result.find((x) => x.idtahunajaran == id);
+				def.resolve(data);
+			});
 		}
 
 		return def.promise;
@@ -432,23 +422,13 @@ function KelulusanService($http, $q, message, AuthService, helperServices) {
 	service.getById = function(id) {
 		var def = $q.defer();
 		if (service.instance) {
-			var data = service.Items.find((x) => x.idkategori == id);
+			var data = service.Items.find((x) => x.idkelulusan == id);
 			def.resolve(data);
 		} else {
-			$http({
-				method: 'Get',
-				url: url + '/' + id,
-				headers: AuthService.getHeader()
-			}).then(
-				(response) => {
-					service.Items.push(response.data);
-					def.resolve(response.data);
-				},
-				(err) => {
-					message.error(err.data);
-					def.reject(err);
-				}
-			);
+			service.get().then((result) => {
+				var data = result.find((x) => x.idkelulusan == id);
+				def.resolve(data);
+			});
 		}
 
 		return def.promise;
